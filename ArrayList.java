@@ -88,10 +88,14 @@ public class ArrayList implements List {
      */
     @Override
     public ReturnObject remove(int index) {
-        if (index < 0 || index >= this.size()) {
+        if (this.size() == 0) {
+            return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+        } else if (index < 0 || index >= this.size()) {
             return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         }
-        
+
+        ReturnObject removed = new ReturnObjectImpl(this.list[index]);
+
         int size = this.size() - 1;
         Object[] newList = new Object[size];
         int p = 0;
@@ -105,7 +109,7 @@ public class ArrayList implements List {
 
         this.list = newList;
 
-        return new ReturnObjectImpl(ErrorMessage.NO_ERROR);
+        return removed;
     }
 
     /**
@@ -127,7 +131,9 @@ public class ArrayList implements List {
      */
     @Override
     public ReturnObject add(int index, Object item) {
-        if (index < 0 || index >= this.size()) {
+        if (this.size() == 0) {
+            return new ReturnObjectImpl(ErrorMessage.EMPTY_STRUCTURE);
+        } else if (index < 0 || index >= this.size()) {
             return new ReturnObjectImpl(ErrorMessage.INDEX_OUT_OF_BOUNDS);
         }
 
