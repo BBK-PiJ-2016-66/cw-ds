@@ -91,7 +91,7 @@ public class LinkedList implements List {
                 this.current = this.next.get(0).getReturnValue();
                 LinkedList next = new LinkedList();
                 for (int i = 1; i < this.next.size(); i++) {
-                    next.add(this.next.get(1).getReturnValue());
+                    next.add(this.next.get(i).getReturnValue());
                 }
                 this.next = next;
             }
